@@ -1,31 +1,47 @@
+<script setup lang="ts">
+import json from '~/public/data/work.json'
+const workData = ref(json)
+const columns = workData.value.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+const firstImage = columns.length > 0 ? columns[0].image.src : '/workboys.jpg'
+</script>
+
 <template>
-  <main class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-8">
-    <div class="p-24 md:order-1 col-span-2 hidden md:block">
-    </div>
+  <main class="w-full flex flex-row justify-center items-center">
+    <div class="w-full max-w-screen-xl grid lg:grid-cols-2 place-items-top gap-36">
+      <div class="md:order-1 col-span-2 h-auto block">
+        <NuxtImg src="/images/header-main.jpg" alt="handyboys" class="w-full h-28 sm:h-36 md:h-48 lg:h-72 object-cover object-center" />
+      </div>
 
-    <div>
-      <h2 class="mt-10 text-lg lg:text-2xl xl:text-3xl font-bold lg:tracking-tight">
-        Vi fikser det meste!
-      </h2>
-      <p class="text-lg mt-1 max-w-xl">
-        Vi er noen handy unge gutter som driver et firma hvor vi tilbyr små og store tjenester i Tønsberg/Nøtterøy området
-      </p>
-      <p class="mt-5">Vi tilbyr tjenester som:</p>
+      <div class="md:order-2">
+        <h2 class="text-lg lg:text-2xl xl:text-3xl font-bold lg:tracking-tight">
+          Vi fikser det meste!
+        </h2>
+        <p class="text-lg mt-1 max-w-xl">
+          Vi er noen handy unge gutter som driver et firma hvor vi tilbyr små og store tjenester i Tønsberg/Nøtterøy området
+        </p>
+        <p class="mt-5">Vi tilbyr tjenester som:</p>
 
-      <ul class="mt-5 list-disc pl-5">
-        <li>Stubbefresing</li>
-        <li>Bilvask</li>
-        <li>Snømåking</li>
-        <li>Gressklipp</li>
-        <li>Flyttejobber</li>
-        <li>Hagearbeid</li>
-        <li>Kjøreoppdrag</li>
-        <li>Faste avtaler</li>
-        <li>m.m.</li>
-      </ul>
-      <p class="mt-5">Ta kontakt på tlf <NuxtLink >40193083</NuxtLink></p>
+        <ul class="mt-5 list-disc pl-5">
+          <li>Stubbefresing</li>
+          <li>Bilvask</li>
+          <li>Snømåking</li>
+          <li>Gressklipp</li>
+          <li>Flyttejobber</li>
+          <li>Hagearbeid</li>
+          <li>Kjøreoppdrag</li>
+          <li>Faste avtaler</li>
+          <li>m.m.</li>
+        </ul>
+        <p class="mt-5">Ta kontakt på tlf <NuxtLink>40193083</NuxtLink>
+        </p>
 
-      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        </div>
+      </div>
+      <div class="md:order-3">
+        <NuxtLink to="/gallery">
+          <NuxtImg :src="firstImage" alt="handyboys" class="w-full rounded-xl" />
+        </NuxtLink>
       </div>
     </div>
   </main>

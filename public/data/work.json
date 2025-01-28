@@ -1,0 +1,74 @@
+[
+    {
+        "date": "2025-01-22",
+        "title": "Snømåking",
+        "description": "Måking av snø på gårdsplassen.",
+        "image": {
+            "src": "/images/work/20250122-2.jpg"
+        }
+    },
+    {
+        "date": "2025-01-22",
+        "title": "Snømåking",
+        "description": "Måking av snø på gårdsplassen.",
+        "image": {
+            "src": "/images/work/20250122-1.jpg"
+        }
+    },
+    {
+        "date": "2025-01-19",
+        "title": "Riving av bad",
+        "description": "Riving av badet i kjelleren.",
+        "image": {
+            "src": "/images/work/20250119-1.jpg"
+        }
+    },
+    {
+        "date": "2025-01-07",
+        "title": "Ny snøfreser",
+        "description": "Montering av ny snøfreser.",
+        "image": {
+            "src": "/images/work/20250107-1.jpg"
+        }
+    },
+    {
+        "date": "2024-05-20",
+        "title": "Plenklipping",
+        "description": "Klipping av plenen.",
+        "image": {
+            "src": "/images/work/20240520-1.jpg"
+        }
+    },
+    {
+        "date": "2024-04-25",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240425-4.jpg"
+        }
+    },
+    {
+        "date": "2024-04-25",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240425-3.jpg"
+        }
+    },
+    {
+        "date": "2024-04-25",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240425-2.jpg"
+        }
+    },
+    {
+        "date": "2024-04-25",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240425-1.jpg"
+        }
+    }
+]

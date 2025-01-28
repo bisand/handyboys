@@ -17,6 +17,13 @@ const menuitems = [
     icon: "bx:bxs-dashboard",
   },
   {
+    title: "Galleri",
+    path: "/gallery",
+    reqireAuth: false,
+    external: false,
+    icon: "bx:bxs-image",
+  },
+  {
     title: "Facebook",
     path: "https://www.facebook.com/people/HandyBoys-As/61555536392249/",
     reqireAuth: false,
