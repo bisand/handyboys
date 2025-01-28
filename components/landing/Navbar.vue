@@ -49,17 +49,34 @@ const menuitems = [
 const client = useKindeClient();
 const auth = useAuth();
 const open = ref(false);
+const menuRef = ref(null)
+
+const handleClickOutside = (event) => {
+  if (menuRef.value && !menuRef.value.contains(event.target)) {
+    open.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
+
 </script>
 
 <template>
   <LandingContainer class="">
     <header
       class="w-full flex flex-row justify-center items-center bg-stone-100 dark:bg-[#262626] bg-opacity-50 dark:bg-opacity-40 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 fixed top-0 z-50">
-      <div class="w-full max-w-screen-xl flex flex-col lg:flex-row justify-between items-center pt-2 pb-1 px-10">
+      <div ref="menuRef" class="w-full max-w-screen-xl flex flex-col lg:flex-row justify-between items-center pt-2 pb-1 px-10">
         <div class="flex w-full lg:w-auto items-center justify-between">
-          <a href="/" class="text-4xl flex flex-row items-baseline">
+          <NuxtLink href="/" class="text-4xl flex flex-row items-baseline" external>
             <NuxtImg src="/handyboys-red.svg" alt="handyboys" width="128" height="128" />
-          </a>
+          </NuxtLink>
           <div class="block lg:hidden">
             <button @click="open = !open" class="text-gray-800 dark:text-gray-400">
               <svg fill="currentColor" class="w-4 h-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

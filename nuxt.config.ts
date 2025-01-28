@@ -35,6 +35,8 @@ export default defineNuxtConfig({
       /* other couchdb connector options */
     },
   },
+  image: {
+  },
   kinde: {
     middleware: true,
     handlers: {

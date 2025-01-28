@@ -7,9 +7,9 @@ const firstImage = columns.length > 0 ? columns[0].image.src : '/workboys.jpg'
 
 <template>
   <main class="w-full flex flex-row justify-center items-center">
-    <div class="w-full max-w-screen-xl grid lg:grid-cols-2 place-items-top gap-36">
-      <div class="md:order-1 col-span-2 h-auto block">
-        <NuxtImg src="/images/header-main.jpg" alt="handyboys" class="w-full h-28 sm:h-36 md:h-48 lg:h-72 object-cover object-center" />
+    <div class="w-full max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 place-items-top gap-16 lg:gap-36">
+      <div class="md:order-1 lg:col-span-2 h-auto block">
+        <NuxtImg src="/header-main.jpg" alt="handyboys" class="w-full h-28 sm:h-36 md:h-48 lg:h-72 object-cover object-center" />
       </div>
 
       <div class="md:order-2">
@@ -32,7 +32,7 @@ const firstImage = columns.length > 0 ? columns[0].image.src : '/workboys.jpg'
           <li>Faste avtaler</li>
           <li>m.m.</li>
         </ul>
-        <p class="mt-5">Ta kontakt på tlf <NuxtLink>40193083</NuxtLink>
+        <p class="mt-5">Ta kontakt på tlf <NuxtLink to="tel:+4740193083" external class="font-bold">401 93 083</NuxtLink>
         </p>
 
         <div class="mt-6 flex flex-col sm:flex-row gap-3">
@@ -40,7 +40,7 @@ const firstImage = columns.length > 0 ? columns[0].image.src : '/workboys.jpg'
       </div>
       <div class="md:order-3">
         <NuxtLink to="/gallery">
-          <NuxtImg :src="firstImage" alt="handyboys" class="w-full rounded-xl" />
+          <NuxtImg :src="firstImage" alt="handyboys" class="w-full rounded-xl shadow-lg" />
         </NuxtLink>
       </div>
     </div>

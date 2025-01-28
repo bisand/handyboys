@@ -14,8 +14,9 @@ WORKDIR /app
 RUN npm install -g pnpm
 # COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN pnpm install
-RUN pnpm run build
+RUN pnpm install && \
+    npm rebuild --arch=x64 --platform=linux --libc=musl sharp && \
+    pnpm run build
 RUN mkdir -p /app/.output/server/node_modules/unstorage/drivers/
 RUN cp -r /app/node_modules/unstorage/drivers/* /app/.output/server/node_modules/unstorage/drivers/
 
