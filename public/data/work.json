@@ -79,5 +79,88 @@
         "image": {
             "src": "/images/work/20240425-1.jpg"
         }
+    },
+
+
+    {
+        "id": 10,
+        "date": "2024-04-09",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240409-1.jpg"
+        }
+    },
+    {
+        "id": 11,
+        "date": "2024-04-10",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240410-1.jpg"
+        }
+    },
+    {
+        "id": 12,
+        "date": "2024-04-24",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240424-1.jpg"
+        }
+    },
+    {
+        "id": 13,
+        "date": "2024-04-25",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240424-2.jpg"
+        }
+    },
+    {
+        "id": 14,
+        "date": "2024-05-13",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240513-1.jpg"
+        }
+    },
+    {
+        "id": 15,
+        "date": "2024-07-09",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240709-1.jpg"
+        }
+    },
+    {
+        "id": 16,
+        "date": "2024-07-18",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20240718-1.jpg"
+        }
+    },
+    {
+        "id": 17,
+        "date": "2024-10-19",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20241019-1.jpg"
+        }
+    },
+    {
+        "id": 19,
+        "date": "2025-01-07",
+        "title": "Rydding av gårdsplass",
+        "description": "Rydding av gårdsplassen.",
+        "image": {
+            "src": "/images/work/20250107-2.jpg"
+        }
     }
 ]

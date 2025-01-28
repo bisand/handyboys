@@ -1,5 +1,6 @@
 <script setup>
 import { NuxtImg } from '#components';
+import path from 'path';
 
 const menuitems = [
   {
@@ -29,6 +30,13 @@ const menuitems = [
     reqireAuth: false,
     external: true,
     icon: "bx:bxl-facebook",
+  },
+  {
+    title: "Referanser",
+    path: "/references",
+    reqireAuth: false,
+    external: false,
+    icon: "bx:bxs-book",
   },
   {
     title: "Kontakt",

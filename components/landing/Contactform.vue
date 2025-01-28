@@ -60,7 +60,7 @@ onMounted(() => {
     class="needs-validation"
     novalidate
   >
-    <input type="hidden" name="access_key" value="65cd99a5-f13c-4de5-baf2-57aecc7b9d5d" />
+    <input type="hidden" name="access_key" value="970806b6-7db8-4219-be77-5aaf4d7151ef" />
     <!-- Create your free access key from https://web3forms.com/ -->
     <input
       type="checkbox"
