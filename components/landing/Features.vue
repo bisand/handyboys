@@ -42,10 +42,8 @@ const features = [
 <template>
   <div class="mt-24 md:mt-0">
     <h2 class="text-2xl lg:text-3xl font-bold lg:tracking-tight">
-      Under oppstart.
     </h2>
     <h3 class="mt-4 text-xl lg:text-2xl font-bold lg:tracking-tight">
-      Mer informasjon følger...
     </h3>
   </div>
 
