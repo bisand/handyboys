@@ -45,8 +45,7 @@ const open = ref(false);
       class="w-full max-w-screen-xl flex flex-col lg:flex-row justify-between items-center py-5 px-10 bg-background/45 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 fixed top-0 z-50">
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-4xl flex flex-row items-baseline">
-          <NuxtImg src="/handyboys.svg" alt="handyboys" width="32" height="40" /><span class="font-bold text-slate-800 dark:text-slate-500 ml-2">Bogen</span><span
-            class="text-slate-500">Tech</span>
+          <NuxtImg src="/handyboys-red.svg" alt="handyboys" width="32" height="40" />
         </a>
         <div class="block lg:hidden">
           <button @click="open = !open" class="text-gray-800 dark:text-gray-400">
