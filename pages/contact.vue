@@ -22,20 +22,14 @@ definePageMeta({
         <div class="mt-5">
           <div class="flex items-center mt-2 space-x-2">
             <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
-            <span>Tønsberg</span>
+            <NuxtLink to="https://www.google.com/maps/place/Haug%C3%A5kerveien+11B,+3132+Hus%C3%B8ysund/" target="_blank" external>Tønsberg</NuxtLink>
           </div>
           <div class="flex items-center mt-2 space-x-2">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a
-              href="mailto:marcus@handyboys.no"
-              >marcus@handyboys.no</a
-            >
+            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><NuxtLink to="mailto:HandyBoys AS<post@handyboys.no>?subject=Jeg trenger hjelp til" external>post@handyboys.no</NuxtLink>
           </div>
-          <!-- <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:phone" /><a
-              href="tel:+1 (234) 5678 999"
-              >+1 (234) 5678 999</a
-            >
-          </div> -->
+          <div class="flex items-center mt-2 space-x-2 text-gray-600">
+            <Icon class="text-gray-400 w-4 h-4" name="uil:phone" /><NuxtLink to="tel:+4740193083" external>401 93 083</NuxtLink>
+          </div>
         </div>
       </div>
       <div>
