@@ -23,9 +23,14 @@
     "ioredis": "^5.4.2",
     "nuxi": "^3.20.0",
     "nuxt": "^3.15.3",
-    "nuxt-icon": "^0.6.8",
     "unstorage": "^1.14.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.4",
+    "nano": "^10.1.4",
+    "node-abort-controller": "^3.1.1",
+    "qs": "^6.13.0"
   }
 }

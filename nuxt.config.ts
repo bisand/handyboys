@@ -1,11 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { type RedisOptions } from "unstorage/drivers/redis";
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   css: [],
   modules: [
-    "nuxt-icon",
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
@@ -28,6 +26,13 @@ export default defineNuxtConfig({
       host: process.env.NUXT_REDIS_HOST || "localhost",
       port: process.env.NUXT_REDIS_PORT ? parseInt(process.env.NUXT_REDIS_PORT, 10) : 6379,
       /* other redis connector options */
+    },
+    couchdb: {
+      url: process.env.NUXT_COUCHDB_URL || "http://localhost:5984",
+      username: process.env.NUXT_COUCHDB_USER || "admin",
+      password: process.env.NUXT_COUCHDB_PASSWORD || "password",
+      database: process.env.NUXT_COUCHDB_DATABASE || "mydb",
+      /* other couchdb connector options */
     },
   },
   kinde: {
