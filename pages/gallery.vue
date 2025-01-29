@@ -2,6 +2,7 @@
 import json from "~/public/data/work.json";
 
 const workData = ref(json);
+const db = useDatabase();
 
 definePageMeta({
   layout: "landing",
