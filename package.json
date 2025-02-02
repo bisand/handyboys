@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node_modules/nuxt/bin/nuxt build",
+    "build": "node_modules/nuxt/bin/nuxt.mjs build -c ./nuxt.config.ts",
     "build:azure": "npx nuxi build --preset=azure",
     "dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
     "generate": "nuxt generate",
