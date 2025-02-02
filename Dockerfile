@@ -13,10 +13,9 @@ RUN apk add --no-cache \
     python3 \
     make \
     g++
-RUN npm install -g pnpm
 COPY . .
-RUN pnpm install && \
-    pnpm run build
+RUN npm ci && \
+    npm run build
 RUN mkdir -p /app/.output/server/node_modules/unstorage/drivers/
 RUN cp -r /app/node_modules/unstorage/drivers/* /app/.output/server/node_modules/unstorage/drivers/
 
