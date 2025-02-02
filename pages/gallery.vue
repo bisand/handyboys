@@ -1,8 +1,9 @@
 <script setup>
 import json from "~/public/data/work.json";
 
+const fetxh = useFetch();
+const { data, error, loading } = fetxh("/data/work.json");
 const workData = ref(json);
-const db = useDatabase();
 
 definePageMeta({
   layout: "landing",
