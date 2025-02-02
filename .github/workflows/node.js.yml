@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: 'handyboys.web.app' # Here the path to the folder where package-lock.json is located.
+        working-directory: '.' # Here the path to the folder where package.json is located.
 
     strategy:
       matrix:
