@@ -2,7 +2,7 @@
 import json from "~/public/data/work.json";
 
 const fetxh = useFetch();
-const { data, error, loading } = fetxh("/data/work.json");
+// const { data, error, loading } = useFetch("/data/work.json");
 const workData = ref(json);
 
 definePageMeta({

@@ -2,29 +2,28 @@ ARG NODE_VERSION=lts
 
 FROM node:${NODE_VERSION}-alpine AS base
 
-FROM base AS builder
-ENV NODE_ENV=production
-ENV SHARP_IGNORE_GLOBAL_LIBVIPS=1
-WORKDIR /app
-RUN apk add --no-cache \
-    build-base \
-    libc6-compat \
-    vips-dev \
-    python3 \
-    make \
-    g++
-COPY . .
-RUN npm ci && \
-    npm run build
-RUN mkdir -p /app/.output/server/node_modules/unstorage/drivers/
-RUN cp -r /app/node_modules/unstorage/drivers/* /app/.output/server/node_modules/unstorage/drivers/
+ARG PORT=3000
 
-FROM base AS runner
-WORKDIR /app
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nitro
-COPY --from=builder /app/.output .
-USER nitro
-EXPOSE 3000
-ENV PORT=3000
-CMD ["node", "server/index.mjs"]
+WORKDIR /src
+
+# Build
+FROM base AS build
+
+COPY --link package.json package-lock.json .
+RUN npm install
+
+COPY --link . .
+
+RUN npm run build
+
+# Run
+FROM base
+
+ENV PORT=$PORT
+ENV NODE_ENV=production
+
+COPY --from=build /src/.output /src/.output
+# Optional, only needed if you rely on unbundled dependencies
+# COPY --from=build /src/node_modules /src/node_modules
+
+CMD [ "node", ".output/server/index.mjs" ]
