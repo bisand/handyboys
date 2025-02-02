@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node_modules/nuxt/bin/nuxt.mjs build -c ./nuxt.config.ts",
+    "build": "nuxt build",
     "build:azure": "npx nuxi build --preset=azure",
     "dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "node_modules/nuxt/bin/nuxt.mjs prepare"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@iconify-json/bx": "^1.2.2",
