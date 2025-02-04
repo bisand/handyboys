@@ -16,7 +16,7 @@ onMounted(() => {
 
     result.innerHTML = "Sending...";
 
-    fetch("https://api.web3forms.com/submit", {
+    fetch("/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ onMounted(() => {
   <!-- To make this contact form work, create your free access key from https://web3forms.com/
      Then you will get all form submissions in your email inbox. -->
   <form
-    action="https://api.web3forms.com/submit"
+    action=""
     method="POST"
     id="form"
     class="needs-validation"
