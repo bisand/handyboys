@@ -18,29 +18,30 @@ export default defineEventHandler(async (event) => {
     }
     // ...existing code...  });
 
-  fields.access_key = process.env.WEB3FORMS_ACCESS_KEY as string;
-  // Map fields as needed
-  fields.from_name = fields.name;
-  fields.replyto = fields.email;
-  fields.subject = `Ny melding fra ${fields.name}`;
+    fields.access_key = process.env.WEB3FORMS_ACCESS_KEY as string;
+    // Map fields as needed
+    fields.from_name = fields.name;
+    fields.replyto = fields.email;
+    fields.subject = `Ny melding fra ${fields.name}`;
 
-  // delete body.images
+    // delete body.images
 
-  // const data = await fetch('https://api.web3forms.com/submit', {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Accept: "application/json",
-  //   },
-  //   body: JSON.stringify(fields),
-  // })
+    // const data = await fetch('https://api.web3forms.com/submit', {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //   },
+    //   body: JSON.stringify(fields),
+    // })
 
-  // return {
-  //   status: data.status,
-  //   body: JSON.stringify({
-  //     message: data.statusText,
-  //   }),
-  // }
+    // return {
+    //   status: data.status,
+    //   body: JSON.stringify({
+    //     message: data.statusText,
+    //   }),
+    // }
+  })
 
   return {
     status: 200,
