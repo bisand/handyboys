@@ -1,23 +1,43 @@
 import { useFetch } from 'nuxt/app'
 
 export default defineEventHandler(async (event) => {
-  console.log('event', event)
 
-  const body = await readBody(event)
+  // Use readMultipartFormData to parse both form fields and file uploads
+  const parts = await readMultipartFormData(event);
 
-  const data = fetch('https://api.web3forms.com/submit', {
+  // Separate text fields and files
+  const fields: Record<string, string> = {};
+  const files: any[] = [];
+
+  parts?.forEach((part: any) => {
+    if ('data' in part) {
+      // This is a file field
+      files.push(part);
+    } else {
+      // This is a regular field
+      fields[part.field] = part.value;
+    }
+  });
+
+  // Map fields as needed
+  fields.from_name = fields.name;
+  fields.replyto = fields.email;
+
+  // delete body.images
+
+  const data = await fetch('https://api.web3forms.com/submit', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: body,
+    body: JSON.stringify(fields),
   })
 
   return {
-    statusCode: 200,
+    status: data.status,
     body: JSON.stringify({
-      message: 'Hello, World!',
+      message: data.statusText,
     }),
   }
 })

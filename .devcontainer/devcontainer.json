@@ -32,7 +32,8 @@
 				"ms-vscode.vscode-github-issue-notebooks",
 				"VisualStudioExptTeam.intellicode-api-usage-examples",
 				"bradlc.vscode-tailwindcss",
-				"antfu.iconify"
+				"antfu.iconify",
+				"ms-vscode.vs-keybindings"
 			]
 		}
 	}
