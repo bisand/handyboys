@@ -39,7 +39,7 @@ const submitForm = async () => {
   formData.append("address", form.value.address)
   formData.append("message", form.value.message)
   form.value.images.forEach((file, index) => {
-    formData.append(`image[${index}]`, file)
+    formData.append(`image${index}`, file)
   })
 
   const data = await $fetch("/api/contact", {

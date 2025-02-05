@@ -108,6 +108,19 @@ export const useDatabase = () => {
         return response.json()
     }
 
+    const createAtt = async (id: string, rev: string, attachment: { name: string, contentType: string, data: any }) => {
+        const response = await fetch(`${baseUrl}/${dbName}/${id}/${attachment.name}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': attachment.contentType,
+                'Authorization': auth,
+                'If-Match': rev
+            },
+            body: attachment.data
+        })
+        return response.json()
+    }
+
     return {
         getAllDb,
         getDb,
@@ -117,7 +130,8 @@ export const useDatabase = () => {
         create,
         update,
         delete: del,
-        find
+        find,
+        createAtt
     } as any
 }
 
