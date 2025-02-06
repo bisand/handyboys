@@ -92,6 +92,7 @@ export const useDatabase = () => {
     }
 
     const create = async (doc: Document): Promise<DocumentCreateResponse> => {
+        const bodyData = JSON.stringify(doc)
         const response = await $fetch(`${baseUrl}/${dbName}`, {
             method: 'POST',
             headers: {
@@ -99,7 +100,7 @@ export const useDatabase = () => {
                 'Authorization': auth
             },
             parseResponse: JSON.parse,
-            body: JSON.stringify(doc)
+            body: bodyData
         })
         return response as DocumentCreateResponse
     }

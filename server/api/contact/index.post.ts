@@ -2,6 +2,13 @@ import { useDatabase } from '~/composables/database'
 
 export default defineEventHandler(async (event) => {
 
+  type Web3FormsResponse = {
+    data: Record<string, any>
+    success: boolean
+    message: string
+  }
+
+
   // Use readMultipartFormData to parse both form fields and file uploads
   const parts = await readMultipartFormData(event)
 
@@ -51,31 +58,36 @@ export default defineEventHandler(async (event) => {
     }
   }
 
+  fields.work_link = `https://www.handyboys.no/work/${resCouchDb.id}`
   fields.access_key = process.env.WEB3FORMS_ACCESS_KEY as string
   fields.from_name = fields.name
   fields.replyto = fields.email
   fields.subject = `Ny melding fra ${fields.name}`
 
-  const data: { status: number, statusText: string } = await $fetch('https://api.web3forms.com/submit', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(fields),
-  })
+  try {
+    const data: any = await $fetch('https://api.web3forms.com/submit', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      parseResponse: JSON.parse,
+      body: JSON.stringify(fields),
+    })
 
-  return {
-    status: data.status,
-    body: JSON.stringify({
-      message: data.statusText,
-    }),
+    return {
+      status: 200,
+      body: data as Web3FormsResponse,
+    }
+
+  } catch (e: any) {
+    console.error(e)
+    return {
+      status: 500,
+      body: {
+        message: 'Error',
+      } as Web3FormsResponse,
+    }
+
   }
-
-  // return {
-  //   status: 200,
-  //   body: JSON.stringify({
-  //     message: 'Success',
-  //   }),
-  // }
 })

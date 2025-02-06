@@ -49,8 +49,7 @@ const submitForm = async () => {
       // Remove the Content-Type header so that the browser sets the boundary for multipart/form-data automatically.
     })
 
-    const responseBody: string = data?.body as string
-    const parsedResponse = JSON.parse(responseBody)
+    const parsedResponse = data.body
     if (data?.status == 200) {
       if (resultDiv.value) {
         resultDiv.value.classList.add("text-green-500")
