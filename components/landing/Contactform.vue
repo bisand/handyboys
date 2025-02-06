@@ -42,34 +42,48 @@ const submitForm = async () => {
     formData.append(`image${index}`, file)
   })
 
-  const data = await $fetch("/api/contact", {
-    method: "POST",
-    body: formData,
-    // Remove the Content-Type header so that the browser sets the boundary for multipart/form-data automatically.
-  })
+  try {
+    const data = await $fetch("/api/contact", {
+      method: "POST",
+      body: formData,
+      // Remove the Content-Type header so that the browser sets the boundary for multipart/form-data automatically.
+    })
 
-  const responseBody: string = data?.body as string
-  const parsedResponse = JSON.parse(responseBody)
-  if (data?.status == 200) {
-    if (resultDiv.value) {
-      resultDiv.value.classList.add("text-green-500")
-      resultDiv.value.innerHTML = parsedResponse.message
+    const responseBody: string = data?.body as string
+    const parsedResponse = JSON.parse(responseBody)
+    if (data?.status == 200) {
+      if (resultDiv.value) {
+        resultDiv.value.classList.add("text-green-500")
+        resultDiv.value.innerHTML = parsedResponse.message
+      }
+    } else {
+      console.log(data)
+      if (resultDiv.value) {
+        resultDiv.value.classList.add("text-red-500")
+        resultDiv.value.innerHTML = parsedResponse.message
+      }
     }
-  } else {
-    console.log(data)
+
+    contactForm.value.reset()
+    contactForm.value.classList.remove("was-validated")
+    setTimeout(() => {
+      if (resultDiv.value) {
+        resultDiv.value.style.display = "none"
+      }
+    }, 5000)
+  }
+  catch (e: any) {
+    console.error(e)
     if (resultDiv.value) {
       resultDiv.value.classList.add("text-red-500")
-      resultDiv.value.innerHTML = parsedResponse.message
+      resultDiv.value.innerHTML = e.message
     }
+    setTimeout(() => {
+      if (resultDiv.value) {
+        resultDiv.value.style.display = "none"
+      }
+    }, 5000)
   }
-
-  contactForm.value.reset()
-  contactForm.value.classList.remove("was-validated")
-  setTimeout(() => {
-    if (resultDiv.value) {
-      resultDiv.value.style.display = "none"
-    }
-  }, 5000)
 }
 
 </script>
