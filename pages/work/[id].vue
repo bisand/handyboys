@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 
 definePageMeta({
   layout: "landing",
+  middleware: ['auth-logged-in'],
 })
 
 interface Attachment {
@@ -45,7 +46,8 @@ onMounted(() => {
 
 <template>
   <LandingContainer class="mt-32 p-8 flex flex-col items-center space-y-8">
-    <div v-if="work" class="w-full max-w-screen-xl block p-6 bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+    <div v-if="work"
+      class="w-full max-w-screen-xl block p-6 bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
       <h1 class="text-3xl font-bold mb-6">{{ work.name }}</h1>
       <p class="text-gray-600 dark:text-gray-300 mb-2">
         <strong>Email:</strong> {{ work.email }}
@@ -62,11 +64,14 @@ onMounted(() => {
       <p class="text-gray-600 dark:text-gray-300 mb-2">
         <strong>Message:</strong> {{ work.message }}
       </p>
-      <div v-if="work._attachments && Object.keys(work._attachments).length" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div v-if="work._attachments && Object.keys(work._attachments).length" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div v-for="(attName, index) in Object.keys(work._attachments)" :key="index">
-          <img :src="`/api/work/${work._id}/attachment/${attName}`" alt="Work attachment" class="max-w-xs rounded" />
+          <a :href="`/api/work/${work._id}/attachment/${attName}`" target="_self">
+            <img :src="`/api/work/${work._id}/attachment/${attName}`" alt="Work attachment" class="rounded-lg border border-gray-300 dark:border-gray-600" />
+          </a>
         </div>
-      </div>    </div>
+      </div>
+    </div>
     <div v-else>
       <p>Loading...</p>
     </div>
