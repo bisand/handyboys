@@ -76,6 +76,8 @@ export default defineEventHandler(async (event) => {
     resCouchDb = await couchDb.create({
       doc_type_: 'contact',
       status: 'todo',
+      created: new Date().toISOString(),
+      completed: null,
       ...fields,
     })
   } catch (e: any) {
