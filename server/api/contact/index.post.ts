@@ -1,11 +1,14 @@
 import { useDatabase } from '~/composables/database'
+import sharp from "sharp";
+import heicConvert from "heic-convert";
 
 export default defineEventHandler(async (event) => {
 
   type Web3FormsResponse = {
     data: Record<string, any>
     success: boolean
-    message: string
+    message: string,
+    workItemId: string
   }
 
 
@@ -17,6 +20,44 @@ export default defineEventHandler(async (event) => {
   // Separate text fields and files
   const fields: Record<string, string> = {}
   const files: any[] = []
+
+  const getJpgFileName = (file: any) => {
+    return file.filename.replace(/\.[^/.]+$/, ".jpg").replace(/\s+/g, "_");
+  }
+
+  const getJpgImage = async (file: any) => {
+    let buffer = file.data;
+    try {
+      const filename = String(file.filename || "");
+      if (filename.toLowerCase().endsWith(".heic")) {
+        buffer = await heicConvert({
+          buffer: file.data,
+          format: "JPEG",
+          quality: 0.50,
+        });
+        buffer = await sharp(buffer).resize({
+          width: 1920,
+          height: 1920,
+          fit: sharp.fit.inside,
+          withoutEnlargement: true,
+        }).toBuffer();
+      } else if (
+        !filename.toLowerCase().endsWith(".jpg") &&
+        !filename.toLowerCase().endsWith(".jpeg")
+      ) {
+        buffer = await sharp(file.data).resize({
+          width: 1920,
+          height: 1920,
+          fit: sharp.fit.inside,
+          withoutEnlargement: true,
+        }).toFormat("jpeg", { quality: 50 }).toBuffer();
+      }
+    }
+    catch (e: any) {
+      console.error(e);
+    }
+    return buffer;
+  }
 
   parts?.forEach((part: any) => {
     // ...existing code...
@@ -34,6 +75,7 @@ export default defineEventHandler(async (event) => {
   try {
     resCouchDb = await couchDb.create({
       doc_type_: 'contact',
+      status: 'todo',
       ...fields,
     })
   } catch (e: any) {
@@ -42,19 +84,18 @@ export default defineEventHandler(async (event) => {
 
   if (resCouchDb && resCouchDb.id) {
     for (const file of files) {
-      // ...existing code...
-      console.log(file)
+      let jpgBuffer = await getJpgImage(file);
       const attachment = {
-        name: file.filename,
-        contentType: file.contentType,
-        data: file.data,
+        name: getJpgFileName(file),
+        contentType: 'image/jpeg',
+        data: jpgBuffer,
       }
       try {
         resCouchDb = await couchDb.uploadAttachment(resCouchDb.id, resCouchDb.rev, attachment)
       } catch (e: any) {
         console.error(e)
       }
-      console.log(resCouchDb)
+      console.log(resCouchDb.id, resCouchDb.rev)
     }
   }
 
@@ -75,6 +116,7 @@ export default defineEventHandler(async (event) => {
       body: JSON.stringify(fields),
     })
 
+    data.workItemId = resCouchDb.id
     return {
       status: 200,
       body: data as Web3FormsResponse,

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "build:azure": "npx nuxi build --preset=azure",
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
+    "dev": "NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "npx nuxt prepare"
@@ -18,13 +18,18 @@
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/kinde": "^0.1.11",
     "@nuxtjs/tailwindcss": "^6.13.1",
+    "@types/heic-convert": "^2.1.0",
     "@vue/compiler-ssr": "^3.5.13",
     "@vue/shared": "^3.5.13",
+    "heic-convert": "^2.1.0",
     "ioredis": "^5.4.2",
     "nuxi": "^3.21.1",
     "nuxt": "^3.15.3",
     "unstorage": "^1.14.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "overrides": {
+    "sharp": "^0.33.5"
   }
 }

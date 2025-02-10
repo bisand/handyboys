@@ -81,6 +81,25 @@ export const useDatabase = () => {
         return response
     }
 
+    const getContactItems = async (status: string): Promise<Document[]> => {
+        const response = await $fetch(`${baseUrl}/${dbName}/_find?attachments=false`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': auth
+            },
+            parseResponse: JSON.parse,
+            body: JSON.stringify({
+                selector: {
+                    doc_type_: 'contact',
+                    status: status
+                }
+            }
+            )
+        })
+        return response
+    }
+
     const getOne = async (id: string): Promise<Document> => {
         const response = await $fetch(`${baseUrl}/${dbName}/${id}`, {
             headers: {
@@ -144,6 +163,15 @@ export const useDatabase = () => {
         return response as DocumentCreateResponse
     }
 
+    const getAttachment = async (id: string, attachmentName: string): Promise<any> => {
+        const response = await $fetch(`${baseUrl}/${dbName}/${id}/${attachmentName}`, {
+            headers: {
+                'Authorization': auth
+            },
+        })
+        return response
+    }
+
     return {
         getAllDb,
         getDb,
@@ -154,7 +182,9 @@ export const useDatabase = () => {
         update,
         delete: del,
         find,
-        uploadAttachment
+        uploadAttachment,
+        getContactItems,
+        getAttachment
     } as any
 }
 

@@ -2,7 +2,8 @@
 const contactForm = ref<HTMLFormElement>() //document.getElementById("form") as HTMLFormElement
 const resultDiv = ref<HTMLDivElement>() //document.getElementById("result")
 
-const uploadedFiles = ref<File[] | null>(new Array<File>())
+const emit = defineEmits(["success", "error"])
+const isLoading = ref(false)
 
 const form = ref({
   name: "",
@@ -13,6 +14,7 @@ const form = ref({
   message: "",
   images: [] as File[],
 })
+
 const onFileChange = (event: Event) => {
   const fileData = event.target as HTMLInputElement
   if (fileData.files && fileData.files.length) {
@@ -26,6 +28,8 @@ const submitForm = async () => {
     (contactForm.value?.querySelectorAll(":invalid")[0] as HTMLFormElement).focus()
     return
   }
+
+  isLoading.value = true
 
   if (resultDiv.value) {
     resultDiv.value.innerHTML = "Sending..."
@@ -54,6 +58,7 @@ const submitForm = async () => {
       if (resultDiv.value) {
         resultDiv.value.classList.add("text-green-500")
         resultDiv.value.innerHTML = parsedResponse.message
+        emit("success", parsedResponse)
       }
     } else {
       console.log(data)
@@ -82,6 +87,9 @@ const submitForm = async () => {
         resultDiv.value.style.display = "none"
       }
     }, 5000)
+  }
+  finally {
+    isLoading.value = false
   }
 }
 
@@ -129,6 +137,7 @@ const submitForm = async () => {
         <option value="" disabled selected>Velg virksomhetstype</option>
         <option value="Eiendomsselskap">Eiendomsselskap</option>
         <option value="Borettslag">Borettslag</option>
+        <option value="Bedrift">Bedrift</option>
         <option value="Privat">Privat</option>
         <option value="Annet">Annet</option>
       </select>
@@ -165,7 +174,18 @@ const submitForm = async () => {
         Vennligst last opp gyldige bilder.
       </div>
     </div>
-    <LandingButton type="submit" size="lg" block>Send melding</LandingButton>
+    <LandingButton :disabled="isLoading" type="submit" size="lg" block>
+      <template v-if="isLoading">
+        <svg class="animate-spin inline mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+        Sending...
+      </template>
+      <template v-else>
+        Send melding
+      </template>
+    </LandingButton>
     <div id="result" ref="resultDiv" class="mt-3 text-center"></div>
   </form>
 </template>
