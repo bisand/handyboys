@@ -11,6 +11,12 @@
 			"version": "latest"
 		}
 	},
+	"runArgs": [
+		"--name",
+		"${localEnv:USER}-handyboys-dev",
+		"--hostname",
+		"${localEnv:USER}-handyboys-dev"
+	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	"mounts": [
@@ -18,7 +24,7 @@
 		"source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig-host,type=bind,consistency=cached"
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sed -i 's/ZSH_THEME=.*/ZSH_THEME=\"bira\"/' ~/.zshrc && cp ~/.gitconfig-host ~/.gitconfig", //&& git config --global gpg.format ssh && git config --global user.signingkey ~/.ssh/id_rsa.pub",
+	"postCreateCommand": "sed -i 's/ZSH_THEME=.*/ZSH_THEME=\"bira\"/' ~/.zshrc && cp ~/.gitconfig-host ~/.gitconfig && npm install -g pnpm@10.0.0 && sudo corepack enable pnpm && corepack use pnpm@10.0.0",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
