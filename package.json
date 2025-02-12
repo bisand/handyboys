@@ -6,11 +6,12 @@
   "scripts": {
     "build": "nuxt build",
     "build:azure": "npx nuxi build --preset=azure",
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
+    "dev": "NODE_OPTIONS=--max-old-space-size=4096 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "npx nuxt prepare"
   },
+  "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
   "devDependencies": {
     "@iconify-json/bx": "^1.2.2",
     "@nuxt/icon": "1.10.3",
@@ -18,13 +19,22 @@
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/kinde": "^0.1.11",
     "@nuxtjs/tailwindcss": "^6.13.1",
+    "@types/heic-convert": "^2.1.0",
     "@vue/compiler-ssr": "^3.5.13",
     "@vue/shared": "^3.5.13",
+    "flowbite": "^3.1.2",
+    "heic-convert": "^2.1.0",
     "ioredis": "^5.4.2",
     "nuxi": "^3.21.1",
     "nuxt": "^3.15.3",
+    "sharp": "^0.33.5",
     "unstorage": "^1.14.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "sharp": "0.33.5"
+    }
   }
 }
