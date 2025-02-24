@@ -2,6 +2,19 @@
 definePageMeta({
   layout: "landing",
 });
+
+const contactFormSubmitted = ref(false);
+const contactDetails = ref({});
+
+const contactSuccess = (data) => {
+  console.log(data);
+  contactDetails.value = data.data;
+  contactFormSubmitted.value = true;
+};
+
+const contactError = (error) => {
+  console.error(error);
+};
 </script>
 
 <template>
@@ -33,7 +46,8 @@ definePageMeta({
         </div>
       </div>
       <div>
-        <LandingContactform />
+        <LandingContactform v-if="!contactFormSubmitted" @success="contactSuccess" @error="contactError" />
+        <LandingContactConfirmation v-if="contactFormSubmitted" :contactDetails="contactDetails" />
       </div>
     </div>
   </LandingContainer>
